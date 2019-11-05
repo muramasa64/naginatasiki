@@ -1,10 +1,6 @@
 require "json"
 
 module KarabinerElements
-  module KeyCode
-    SPACE = "spacebar"
-  end
-
   def self.input_source_if(language)
     {
       "type" => "input_source_if",
@@ -54,6 +50,32 @@ module KarabinerElements
         }
       ]
     }
+  end
+
+  def self.key(key_code)
+    {
+      "key_code": key_code,
+    }
+  end
+
+  def self.key_with_shift(key_code)
+    {
+      "key_code": key_code,
+      "modifiers": {
+        "mandatory": [
+          "shift"
+        ]
+      }
+    }
+  end
+
+  def self.manipulator(description, options = {})
+    h = {
+      "description": description,
+      "type": "basic",
+    }
+    options.map {|k, v| h[k] = v }
+    h
   end
 
   def self.generate(title, description, manipulators)
