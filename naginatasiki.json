@@ -1,28 +1,38 @@
 {
-	"complex_modifications": {
-		"rules": [
-			{
-				"description": "薙刀式（v11）テスト版"
-				"manipulators": [
-					{
-						"type": "basic",
-						"from": {
-							"key_code": "spacebar"
-						},
+	"title": "薙刀式（v11）テスト版",
+	"rules": [
+		{
+			"description": "薙刀式（v11）テスト版",
+			"manipulators": [
+				{
+					"type": "basic",
+					"from": {
+						"key_code": "spacebar",
 						"modifiers": {
 							"optional": [
 								"any"
 							]
-						},
-						"to": {
-							"key_code": "left_shift"
-						},
-						"to_if_alone": {
-							"key_code": "spacebar"
 						}
+					},
+					"to": {
+						"key_code": "left_shift"
+					},
+					"to_if_alone": {
+						"key_code": "spacebar"
 					}
-				]
-			}
-		]
-	}
+				{
+					"type": "basic",
+					"from": { "key_code": "t", "modifiers": { "mandatory": [ "shift" ] } },
+					"to": [ { "key_code": "m" }, { "key_code": "o" } ],
+					"conditions": [ { "type": "input_source_if", "input_sources": [ { "language": "ja" } ] } ]
+				},
+				{
+					"type": "basic",
+					"from": { "key_code": "t" },
+					"to": [ { "key_code": "i" } ],
+					"conditions": [ { "type": "input_source_if", "input_sources": [ { "language": "ja" } ] } ]
+				}
+			]
+		}
+	]
 }
