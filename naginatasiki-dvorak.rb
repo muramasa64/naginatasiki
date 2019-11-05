@@ -11,22 +11,22 @@ manipulators = [
   triple_keys("o", "h", "s", "ぎゃ"),
   triple_keys("o", "h", "r", "ぎゅ"),
   triple_keys("o", "h", "c", "ぎょ"),
-  triple_keys("p", "h", "s", "じゃ")
-  triple_keys("p", "h", "r", "じゅ")
-  triple_keys("p", "h", "c", "じょ")
-  triple_keys("i", "h", "s", "ぢゃ")
-  triple_keys("i", "h", "r", "ぢゅ")
-  triple_keys("i", "h", "c", "ぢょ")
-  triple_keys("q", "h", "s", "びゃ")
-  triple_keys("q", "h", "r", "びゅ")
-  triple_keys("q", "h", "c", "びょ")
-  triple_keys("q", "m", "s", "ぴゃ")
-  triple_keys("q", "m", "r", "ぴゅ")
-  triple_keys("q", "m", "c", "ぴょ")
+  triple_keys("p", "h", "s", "じゃ"),
+  triple_keys("p", "h", "r", "じゅ"),
+  triple_keys("p", "h", "c", "じょ"),
+  triple_keys("i", "h", "s", "ぢゃ"),
+  triple_keys("i", "h", "r", "ぢゅ"),
+  triple_keys("i", "h", "c", "ぢょ"),
+  triple_keys("q", "h", "s", "びゃ"),
+  triple_keys("q", "h", "r", "びゅ"),
+  triple_keys("q", "h", "c", "びょ"),
+  triple_keys("q", "m", "s", "ぴゃ"),
+  triple_keys("q", "m", "r", "ぴゅ"),
+  triple_keys("q", "m", "c", "ぴょ"),
   # double key（制御）
-  double_keys("k", "m", "改行")
-  double_keys("d", "h", "かな")
-  double_keys("u", "i", "英数")
+  double_keys("k", "m", "改行"),
+  double_keys("d", "h", "かな", false),
+  double_keys("u", "i", "英数", false),
   # double key (濁音)
   # left 1
   double_keys("h", "comma", "ば"),
@@ -65,37 +65,37 @@ manipulators = [
   # right 3
   double_keys("u", "v", "ぷ"),
   # double key（拗音）
-  double_keys("o", "s", "きゃ")
-  double_keys("o", "r", "きゅ")
-  double_keys("o", "c", "きょ")
-  double_keys("p", "s", "しゃ")
-  double_keys("p", "r", "しゅ")
-  double_keys("p", "c", "しょ")
-  double_keys("i", "s", "ちゃ")
-  double_keys("i", "r", "ちゅ")
-  double_keys("i", "c", "ちょ")
-  double_keys("e", "s", "にゃ")
-  double_keys("e", "r", "にゅ")
-  double_keys("e", "c", "にょ")
-  double_keys("q", "s", "ひゃ")
-  double_keys("q", "r", "ひゅ")
-  double_keys("q", "c", "ひょ")
-  double_keys("comma", "s", "みゃ")
-  double_keys("comma", "r", "みゅ")
-  double_keys("comma", "c", "みょ")
-  double_keys("period", "s", "りゃ")
-  double_keys("period", "r", "りゅ")
-  double_keys("period", "c", "りょ")
-  # double key（小書き）
-  shifted_double_keys("h", "k", "ぁ")
-  shifted_double_keys("t", "k", "ぃ")
-  shifted_double_keys("n", "k", "ぅ")
-  shifted_double_keys("l", "k", "ぇ")
-  shifted_double_keys("b", "k", "ぉ")
-  shifted_double_keys("s", "k", "ゃ")
-  shifted_double_keys("r", "k", "ゅ")
-  shifted_double_keys("c", "k", "ょ")
-  shifted_double_keys("d", "k", "ゎ")
+  double_keys("o", "s", "きゃ"),
+  double_keys("o", "r", "きゅ"),
+  double_keys("o", "c", "きょ"),
+  double_keys("p", "s", "しゃ"),
+  double_keys("p", "r", "しゅ"),
+  double_keys("p", "c", "しょ"),
+  double_keys("i", "s", "ちゃ"),
+  double_keys("i", "r", "ちゅ"),
+  double_keys("i", "c", "ちょ"),
+  double_keys("e", "s", "にゃ"),
+  double_keys("e", "r", "にゅ"),
+  double_keys("e", "c", "にょ"),
+  double_keys("q", "s", "ひゃ"),
+  double_keys("q", "r", "ひゅ"),
+  double_keys("q", "c", "ひょ"),
+  double_keys("comma", "s", "みゃ"),
+  double_keys("comma", "r", "みゅ"),
+  double_keys("comma", "c", "みょ"),
+  double_keys("period", "s", "りゃ"),
+  double_keys("period", "r", "りゅ"),
+  double_keys("period", "c", "りょ"),
+  # double key（小書き）,
+  shifted_double_keys("h", "k", "ぁ"),
+  shifted_double_keys("t", "k", "ぃ"),
+  shifted_double_keys("n", "k", "ぅ"),
+  shifted_double_keys("l", "k", "ぇ"),
+  shifted_double_keys("b", "k", "ぉ"),
+  shifted_double_keys("s", "k", "ゃ"),
+  shifted_double_keys("r", "k", "ゅ"),
+  shifted_double_keys("c", "k", "ょ"),
+  shifted_double_keys("d", "k", "ゎ"),
   # double key (外来音)
   double_keys("comma", "h", "ヴぁ"),
   double_keys("comma", "t", "ヴぃ"),
@@ -115,8 +115,8 @@ manipulators = [
   double_keys("n", "t", "うぃ"),
   double_keys("n", "l", "うぇ"),
   double_keys("n", "b", "うぉ"),
-  double_keys("period", "t", "りぃ")
-  double_keys("period", "l", "りぇ")
+  double_keys("period", "t", "りぃ"),
+  double_keys("period", "l", "りぇ"),
   shifted_double_keys("n", "h", "つぁ"),
   shifted_double_keys("n", "t", "つぃ"),
   shifted_double_keys("n", "l", "つぇ"),

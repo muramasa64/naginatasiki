@@ -182,8 +182,8 @@ module NaginataSiki
     "選→" => [key_with_shift("right_arrow")],
     "選←" => [key_with_shift("left_arrow")],
     "改行" => [key("return_or_enter")],
-    "英数" => [key("lang1")],
-    "かな" => [key("lang2")],
+    "かな" => [key("lang1")],
+    "英数" => [key("lang2")],
     "。改" => [key("period"),key("return_or_enter")],
   }
 
@@ -211,17 +211,24 @@ module NaginataSiki
     manipulator("#{from} + shift = #{to}", h)
   end
 
-  def sim_keys(from_keys, to)
-    h = {
-      "from": simultaneous_keys(from_keys),
-      "to": KEY_MAPS[to],
-      "conditions": [ input_source_if_ja ]
-    }
+  def sim_keys(from_keys, to, ja_only = true)
+    h = if ja_only
+      {
+        "from": simultaneous_keys(from_keys),
+        "to": KEY_MAPS[to],
+        "conditions": [ input_source_if_ja ]
+      }
+    else
+      {
+        "from": simultaneous_keys(from_keys),
+        "to": KEY_MAPS[to]
+      }
+    end
     manipulator("#{from_keys.join(" + ")} = #{to}", h)
   end
 
-  def double_keys(from1, from2, to)
-    sim_keys([from1, from2], to)
+  def double_keys(from1, from2, to, ja_only = true)
+    sim_keys([from1, from2], to, ja_only)
   end
 
   def triple_keys(from1, from2, from3, to)
