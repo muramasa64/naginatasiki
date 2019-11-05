@@ -4,6 +4,14 @@ require_relative './karabiner_elements.rb'
 module NaginataSiki
   include KarabinerElements
 
+  def self.key(key_code)
+    KarabinerElements.key(key_code)
+  end
+
+  def self.key_with_shift(key_code)
+    KarabinerElements.key_with_shift(key_code)
+  end
+
   KEY_MAPS = {
     "あ" => [key("a")],
     "い" => [key("i")],
@@ -179,20 +187,13 @@ module NaginataSiki
     "。改" => [key("period"),key("return_or_enter")],
   }
 
-  def self.key(key_code)
-    KarabinerElements.key(key_code)
-  end
+  module_function
 
-  def self.key_with_shift(key_code)
-    KarabinerElements.key_with_shift(key_code)
-  end
-
-
-  def self.sands
+  def sands
     KarabinerElements.hold_to_shift("spacebar")
   end
 
-  def self.single_key(from, to)
+  def single_key(from, to)
     h = {
       "from": {"key_code": from},
       "to": KEY_MAPS[to],
@@ -201,16 +202,33 @@ module NaginataSiki
     KarabinerElements.manipulator("#{from} = #{to}", h)
   end
 
-  def self.shifted_key(from, to)
+  def shifted_key(from, to)
     h = {
-      "from": key_with_shift(from),
+      "from": KarabinerElements.key_with_shift(from),
       "to": KEY_MAPS[to],
       "conditions": [ KarabinerElements.input_source_if_ja ]
     }
     KarabinerElements.manipulator("#{from} = #{to}", h)
   end
 
-  def self.generate(title, description, manipulators)
+  def simultaneous_keys(from_keys, to)
+    h = {
+      "from": KarabinerElements.simultaneous_keys(from_keys),
+      "to": KEY_MAPS[to],
+      "conditions": [ KarabinerElements.input_source_if_ja ]
+    }
+    KarabinerElements.manipulator("#{from_keys.join(" + ")} = #{to}", h)
+  end
+
+  def double_keys(from1, from2, to)
+    simultaneous_keys([from1, from2], to)
+  end
+
+  def triple_keys(from1, from2, from3, to)
+    simultaneous_keys([from1, from2, from3], to)
+  end
+
+  def generate(title, description, manipulators)
     KarabinerElements.generate(title, description, manipulators)
   end
 end

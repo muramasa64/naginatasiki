@@ -1,21 +1,15 @@
 #/usr/bin/env ruby
 
-require 'json'
-require_relative './karabiner_elements.rb'
+require_relative './lib/naginatasiki.rb'
 
-module NaginataSiki
-  include KarabinerElements
+include NaginataSiki
 
-  def self.sands
-    KarabinerElements.hold_to_shift(KeyCode::SPACE)
-  end
+manipulators = [
+  sands,
+  triple_keys("o", "h", "c", "ぎょ"),
+  double_keys("h", "u", "が"),
+  shifted_key("h", "の"),
+  single_key("h", "あ"),
+]
 
-  def self.gen
-    manipulators = [
-      sands,
-    ]
-    KarabinerElements.generate("薙刀式（v11）", "薙刀式 for Dvorak", manipulators)
-  end
-end
-
-puts NaginataSiki.gen
+puts generate("薙刀式（v11）", "薙刀式テスト for Dvorak", manipulators)

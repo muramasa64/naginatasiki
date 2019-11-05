@@ -69,6 +69,12 @@ module KarabinerElements
     }
   end
 
+  def self.simultaneous_keys(from_keys)
+    {
+      "simultaneous": from_keys.map {|k| self.key(k)}
+    }
+  end
+
   def self.manipulator(description, options = {})
     h = {
       "description": description,
