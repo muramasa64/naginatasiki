@@ -20,6 +20,19 @@
 					"to_if_alone": {
 						"key_code": "spacebar"
 					}
+				},
+				{
+					"type": "basic",
+					"from": { "key_code": "h", "modifiers": { "mandatory": [ "shift" ] } },
+					"to": [ { "key_code": "n" }, { "key_code": "o" } ],
+					"conditions": [ { "type": "input_source_if", "input_sources": [ { "language": "ja" } ] } ]
+				},
+				{
+					"type": "basic",
+					"from": { "key_code": "h" },
+					"to": [ { "key_code": "a" } ],
+					"conditions": [ { "type": "input_source_if", "input_sources": [ { "language": "ja" } ] } ]
+				},
 				{
 					"type": "basic",
 					"from": { "key_code": "t", "modifiers": { "mandatory": [ "shift" ] } },
