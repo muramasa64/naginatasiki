@@ -1,7 +1,9 @@
 require "json"
 
 module KarabinerElements
-  def self.input_source_if(language)
+  module_function
+
+  def input_source_if(language)
     {
       "type" => "input_source_if",
       "input_sources" => [
@@ -12,11 +14,11 @@ module KarabinerElements
     }
   end
 
-  def self.input_source_if_ja
+  def input_source_if_ja
     input_source_if("ja")
   end
 
-  def self.base(title, description, manipulators)
+  def base(title, description, manipulators)
     {
       "title" => title,
       "rules" => [
@@ -28,7 +30,7 @@ module KarabinerElements
     }
   end
 
-  def self.hold_to_shift(key_code)
+  def hold_to_shift(key_code)
     {
       "type": "basic",
       "from": {
@@ -52,13 +54,14 @@ module KarabinerElements
     }
   end
 
-  def self.key(key_code)
+  def key(key_code)
     {
       "key_code": key_code,
+      "repeat": false
     }
   end
 
-  def self.key_with_shift(key_code)
+  def key_with_shift(key_code)
     {
       "key_code": key_code,
       "modifiers": {
@@ -69,13 +72,24 @@ module KarabinerElements
     }
   end
 
-  def self.simultaneous_keys(from_keys)
+  def simultaneous_keys(from_keys)
     {
-      "simultaneous": from_keys.map {|k| self.key(k)}
+      "simultaneous": from_keys.map {|k| {"key_code": k}}
     }
   end
 
-  def self.manipulator(description, options = {})
+  def simultaneous_keys_with_shift(from_keys)
+    {
+      "simultaneous": from_keys.map {|k| {"key_code": k}},
+      "modifiers": {
+        "mandatory": [
+          "shift"
+        ]
+      }
+    }
+  end
+
+  def manipulator(description, options = {})
     h = {
       "description": description,
       "type": "basic",
@@ -84,7 +98,7 @@ module KarabinerElements
     h
   end
 
-  def self.generate(title, description, manipulators)
+  def generate(title, description, manipulators)
     JSON.pretty_generate(base(title, description, manipulators))
   end
 end

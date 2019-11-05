@@ -190,46 +190,50 @@ module NaginataSiki
   module_function
 
   def sands
-    KarabinerElements.hold_to_shift("spacebar")
+    hold_to_shift("spacebar")
   end
 
   def single_key(from, to)
     h = {
       "from": {"key_code": from},
       "to": KEY_MAPS[to],
-      "conditions": [ KarabinerElements.input_source_if_ja ]
+      "conditions": [ input_source_if_ja ]
     }
-    KarabinerElements.manipulator("#{from} = #{to}", h)
+    manipulator("#{from} = #{to}", h)
   end
 
   def shifted_key(from, to)
     h = {
-      "from": KarabinerElements.key_with_shift(from),
+      "from": key_with_shift(from),
       "to": KEY_MAPS[to],
-      "conditions": [ KarabinerElements.input_source_if_ja ]
+      "conditions": [ input_source_if_ja ]
     }
-    KarabinerElements.manipulator("#{from} = #{to}", h)
+    manipulator("#{from} + shift = #{to}", h)
   end
 
-  def simultaneous_keys(from_keys, to)
+  def sim_keys(from_keys, to)
     h = {
-      "from": KarabinerElements.simultaneous_keys(from_keys),
+      "from": simultaneous_keys(from_keys),
       "to": KEY_MAPS[to],
-      "conditions": [ KarabinerElements.input_source_if_ja ]
+      "conditions": [ input_source_if_ja ]
     }
-    KarabinerElements.manipulator("#{from_keys.join(" + ")} = #{to}", h)
+    manipulator("#{from_keys.join(" + ")} = #{to}", h)
   end
 
   def double_keys(from1, from2, to)
-    simultaneous_keys([from1, from2], to)
+    sim_keys([from1, from2], to)
   end
 
   def triple_keys(from1, from2, from3, to)
-    simultaneous_keys([from1, from2, from3], to)
+    sim_keys([from1, from2, from3], to)
   end
 
-  def generate(title, description, manipulators)
-    KarabinerElements.generate(title, description, manipulators)
+  def shifted_double_keys(from1, from2, to)
+    h = {
+      "from": simultaneous_keys_with_shift([from1, from2]),
+      "to": KEY_MAPS[to],
+      "conditions": [ input_source_if_ja ]
+    }
+    manipulator("#{from1} + #{from2} + shift = #{to}", h)
   end
 end
-
